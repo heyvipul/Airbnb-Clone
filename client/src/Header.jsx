@@ -1,7 +1,28 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { UserContext } from './UserContext'
 
 const Header = () => {
+
+  const { user, setUser } = useContext(UserContext);
+
+  // Fetch user information from localStorage on component mount
+  // useEffect(() => {
+  //   const storedUser = localStorage.getItem('user');
+  //   if (storedUser) {
+  //     setUser(JSON.parse(storedUser));
+  //   }
+  // }, [setUser]);
+
+  
+  // useEffect(() => {
+  //   if (user) {
+  //     localStorage.setItem('user', JSON.stringify(user));
+  //   }
+  // }, [user]);
+
+
+
   return (
     <div>
     {/* Navbar */}
@@ -40,7 +61,12 @@ const Header = () => {
       </svg>
 
       </div>
-
+      
+      {!!user && (
+        <div>
+          {user.name}
+        </div>
+      )}
 
       </Link>
     </header>
